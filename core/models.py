@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 class BannerImage(models.Model):
     image = models.ImageField(upload_to="polo_imgs/")
@@ -17,6 +18,9 @@ class Chef(models.Model):
 class MenuCategory(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to="polo_imgs/", blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Menu Categories"
 
     def __str__(self):
             return self.name
@@ -63,6 +67,9 @@ class Testimonial(models.Model):
 class BlogCategory(models.Model):
     name = models.CharField(max_length=70)
 
+    class Meta:
+        verbose_name_plural = "Blog Categories"
+
     def __str__(self):
         return self.name
 
@@ -90,6 +97,9 @@ class Blogcomment(models.Model):
 class GalleryCategory(models.Model):
     name = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name_plural = "Gallery Categories"
+
     def __str__(self):
         return self.name
 
@@ -97,6 +107,9 @@ class Gallery(models.Model):
     image = models.ImageField(upload_to="polo_imgs/")
     name = models.CharField(max_length=100)
     category = models.ForeignKey(GalleryCategory, on_delete=models.CASCADE, related_name="images")
+
+    class Meta:
+        verbose_name_plural = "Galleries"
 
     def __str__(self):
         return self.name
@@ -110,3 +123,33 @@ class ContactForm(models.Model):
     def __str__(self):
         return self.name
     
+class SiteSettings(models.Model):
+    bannertitle = models.CharField(max_length=1000)
+    abouttitle1 = models.CharField(max_length=100)
+    aboutcontent1 = models.TextField()
+    aboutimage1 = models.ImageField(upload_to="polo_imgs/")
+    abouttitle2 = models.CharField(max_length=100)
+    aboutcontent2 = models.TextField()
+    aboutimage2 = models.ImageField(upload_to="polo_imgs/")
+    abouttitle3 = models.CharField(max_length=100)
+    aboutcontent3 = models.TextField()
+    aboutimage3 = models.ImageField(upload_to="polo_imgs/")
+    aboutvideo = models.FileField(upload_to="polo_imgs/")
+    reservationimage = models.ImageField(upload_to="polo_imgs/")
+    reservationcontent = HTMLField()
+    subscribemail = models.EmailField(max_length=256)
+    location = models.TextField()
+    phone = models.CharField(max_length=12)
+    email = models.EmailField(max_length=256)
+    workinghours = models.TextField()
+
+    class Meta:
+        verbose_name_plural = 'Site Settings'
+
+    def save(self, *args, **kwargs):
+        if not self.id and SiteSettings.objects.exists():
+            return None
+        return super(SiteSettings,self).save(*args,**kwargs)
+
+    def __str__ (self):
+        return "Settings"
