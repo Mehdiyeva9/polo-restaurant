@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from core.models import (
-    BannerImage, Chef, MenuCategory, Menu, Event, 
+    BannerImage, Chef, MenuCategory, Menu, Event, SocialMedia,
     Reservation, Testimonial, BlogCategory, Blog, BlogComment,
     GalleryCategory, Gallery, ContactForm, SiteSettings
 )
@@ -45,14 +45,20 @@ class BlogCategorySerializer(serializers.ModelSerializer):
         model = BlogCategory
         fields = "__all__"
 
+class BlogCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogComment
+        fields = "__all__"
+
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = "__all__"
-
-class BlogCommentSerializer(serializers.ModelSerializer):
+        
+class BlogRetrieveSerializer(serializers.ModelSerializer):
+    blogcomment = BlogCommentSerializer
     class Meta:
-        model = BlogComment
+        model = Blog
         fields = "__all__"
 
 class GalleryCategorySerializer(serializers.ModelSerializer):
@@ -65,9 +71,19 @@ class GallerySerializer(serializers.ModelSerializer):
         model = Gallery
         fields = "__all__"
 
+class GalleryRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gallery
+        fields = ("image", )
+
 class ContactFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactForm
+        fields = "__all__"
+
+class SocialMediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SocialMedia
         fields = "__all__"
 
 class SiteSettingsSerializer(serializers.ModelSerializer):

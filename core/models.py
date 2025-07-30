@@ -123,6 +123,14 @@ class ContactForm(models.Model):
     def __str__(self):
         return self.name
     
+class SocialMedia(models.Model):
+    name = models.CharField(max_length=30, blank=True, null=True)
+    link = models.URLField(max_length=200)
+    icon = models.ImageField(upload_to="polo_imgs/")
+
+    def __str__(self):
+        return self.name
+    
 class SiteSettings(models.Model):
     bannertitle = models.CharField(max_length=1000, blank=True, null=True)
     abouttitle1 = models.CharField(max_length=100, blank=True, null=True)
