@@ -35,7 +35,7 @@ class ReservationCreateAPIView(CreateAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
 
-class TestimonialLIstAPIView(ListAPIView):
+class TestimonialListAPIView(ListAPIView):
     queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
 
