@@ -11,5 +11,12 @@ urlpatterns = [
     path("reservation-create/", views.ReservationCreateAPIView.as_view()),
     path("testimonial-list/", views.TestimonialListAPIView.as_view()),
     path("blogcategory-list/", views.BlogCategoryListAPIView.as_view()),
-    path("blog-list/", views.BlogListAPIView.as_view())
+    path("blog-list/", views.BlogListAPIView.as_view()),
+    path("blogcomment-list/", views.BlogCommentListAPIView.as_view()),
+    path("blog-retrieve/<id>/", views.BlogRetrieveAPIView.as_view()),
+    path("gallerycategory-list/", views.GalleryCategoryListAPIView.as_view()),
+    path("gallery-retrieve/<id>/", views.GalleryRetrieveAPIView.as_view()),
+    path("contactform-create/", views.ContactFormCreateAPIView.as_view()),
+    path("socialmedia-list/", views.SocialMediaListAPIView.as_view()),
+    path("sitesettings-list/", views.SiteSettingsListAPIView.as_view())
 ]

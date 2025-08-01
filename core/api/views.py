@@ -54,6 +54,7 @@ class BlogCommentListAPIView(ListAPIView):
 class BlogRetrieveAPIView(RetrieveAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogRetrieveSerializer
+    lookup_field = "id"
 
 class GalleryCategoryListAPIView(ListAPIView):
     queryset = GalleryCategory.objects.all()
@@ -66,6 +67,7 @@ class GalleryListAPIView(ListAPIView):
 class GalleryRetrieveAPIView(RetrieveAPIView):
     queryset = Gallery.objects.all()
     serializer_class = GalleryRetrieveSerializer
+    lookup_field = "id"
 
 class ContactFormCreateAPIView(CreateAPIView):
     queryset = ContactForm.objects.all()
